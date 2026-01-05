@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card bg-dark">
+  <div class="card-body">
+    <h1 style ="color:gold";>{{post.title}}</h1>
+    <h2 style ="color:rgb(255, 0, 242)";>Written by: {{post.author.username}}</h2>
+    <h3 style ="color:rgb(255, 0, 242)";>Published: {{post.date.strftime('%B %d, %y')}}</h3>
+    <p style ="color:gold";>{{post.text}}</p>
+    <img src="{{ url_for('static', filename='post_pics/' + post.post_image) }}">
+
+  </div>
+</div>
+    {% if post.author == current_user %}
+    <div class="d-flex gap-2 mt-3">
+        
+      <form action="{{ url_for('blog_posts.update', blog_post_id=post.id) }}" method="get">
+        <button type="submit" class="btn btn-danger">Update</button>
+      </form>
+
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_modal">Delete</button>
+
+    </div>
+    {% endif %}
+
+
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="del_modal">
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" style ="color:gold";>Delete Post?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p style ="color:gold";>Are you sure you want to delete the post?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+       
+        <form action="{{url_for('blog_posts.delete_post',blog_post_id=post.id)}}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

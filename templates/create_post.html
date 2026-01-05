@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+    background-image: url('https://assetsio.gnwcdn.com/need-for-speed-most-wanted-2005-art.jpg?width=1600&height=900&fit=crop&quality=100&format=png&enable=upscale&auto=webp');
+            }
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: #ffc107;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+</style>
+
+  <div class="login-container">
+    <form class="form-group" method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+
+        <div class="form-group text-warning">
+            {{form.title.label(class="form-control-label bg-dark text-warning")}}
+            {{form.title(class="form-control form-control-lg bg-dark text-warning")}}
+        <div>
+        <div class="mb-3">
+            {{form.post_image.label(class="mb-3 text-warning")}}
+            {{form.post_image(class="form-control bg-dark text-warning")}}
+        </div>  
+        <div class="form-group text-warning">
+            {{form.text.label(class="form-control-label bg-dark text-warning")}}
+            {{form.text(class="form-control form-control-lg bg-dark text-warning")}}
+        </div>        
+        <div class="form-group">
+            {{form.submit(class="btn btn btn-warning")}}
+        </div>
+
+    </form>
+
+  </div>
+
+
+{% endblock %}

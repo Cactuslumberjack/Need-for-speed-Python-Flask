@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jumbotron bg-dark">
+    <h1 style ="color:gold";><b1>Need for Speed Community Posts</b1></h1>
+  </div>
+
+  <div class="container">
+
+    {% for post in blog_posts.items  %}
+    <div class = "card bg-warning">
+      <div class="card-body">
+        <h2> <a class='card-title' href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">{{post.title}}</a></h2>
+        <a href="{{url_for('users.user_posts',username=post.author.username)}}" style ="color:rgb(255, 0, 242)">Written By: {{ post.author.username}}</a>
+        <p>Published on: {{post.date.strftime('%Y-%m-%d')}}</p>
+        <a class="btn btn-danger" href="{{ url_for('blog_posts.blog_post',blog_post_id=post.id)}}">Read Blog Post</a>
+      </div>
+
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+  <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% for page_num in blog_posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+       {% if blog_posts.page == page_num %}
+    <li class="page-item disabled"><a class="page-link bg-danger" href="{{url_for('core.index',page=page_num)}}">Current</a></li>
+       {% else %}
+    <li class="page-item"><a class="page-link bg-danger" href="{{url_for('core.index',page=page_num)}}" style ="color:white">{{page_num}} </a></li>
+
+       {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+
+
+{% endblock %}

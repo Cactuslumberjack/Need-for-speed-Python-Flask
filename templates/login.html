@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: #ffc107;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+</style>
+
+<div class="login-container"> 
+  <form class="form-group text-bg-dark" method="POST">
+    {{form.hidden_tag()}}
+    <div class="form-group text-warning">
+    {{form.email.label(class="form-label bg-warning text-dark")}}{{form.email(class="form-control bg-dark text-warning", placeholder="Enter email")}}<br>
+    </div>
+    <div class="form-group text-warning"> 
+    {{form.password.label(class="form-label bg-warning text-dark")}}{{form.password(class="form-control bg-dark text-warning",placeholder="Password")}}<br>
+    </div>
+    {{form.submit(class="btn btn-danger")}}
+
+
+  </form>
+</div>
+
+<div class="login-container">
+   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_modal">Reset Password</button>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="del_modal">
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" style ="color:gold";>Reset Password?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p style ="color:gold";>Are you sure you want to reset password</p>
+      </div>
+      <div class="modal-footer">
+       <a href="{{url_for('users.reset_password')}}" class="btn btn-secondary">Reset Password</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+       
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

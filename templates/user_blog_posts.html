@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card bg-warning">
+  <div class="card-body">
+    <div align='center'>
+        <h1 style ="color:black";>Blacklist member {{user.username}} </h1>
+        <img src="{{url_for('static',filename='profile_pics/'+user.profile_image)}}">
+    </div>
+
+  </div>
+
+
+{% for post in blog_posts.items %}
+  <h2> <a href="{{url_for('blog_posts.blog_post',blog_post_id=post.id)}}" style ="color:black">{{post.title}}</a> </h2>
+  Written By: <a href="{{url_for('users.user_posts',username=post.author.username)}}" style ="color:rgb(255, 0, 242)">{{post.author.username}}</a>
+  <p> Published on: {{post.date.strftime("%Y-%m-%d")}}</p>
+  <br>
+  <p>{{post.text}}</p>
+  <br> 
+{% endfor %}
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% for page_num in blog_posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+       {% if blog_posts.page == page_num %}
+    <li class="page-item disabled"><a class="page-link bg-danger" href="{{url_for('users.user_posts',username=user.username,page=page_num)}}">Current</a></li>
+       {% else %}
+    <li class="page-item"><a class="page-link" href="{{url_for('users.user_posts',username=user.username,page=page_num)}}">{{page_num}}</a></li>
+       {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+
+
+{% endblock %}

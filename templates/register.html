@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+  background-image: url('https://i.ytimg.com/vi/RyfQEf-tHkM/maxresdefault.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: #ffc107;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+</style>
+
+<div class="login-container">
+  <form method="POST">
+    {{form.hidden_tag()}}
+    <div class="form-group">
+    {{form.email.label(class="form-label bg-dark")}}{{form.email(class="form-control bg-dark text-warning", placeholder="Enter email")}}<br>
+    </div>
+    <div class="form-group">
+    {{form.username.label(class="form-label bg-dark")}}{{form.username(class="form-control bg-dark text-warning", placeholder="Enter Username")}}<br>
+    </div>
+    <div class="form-group">
+    {{form.securityQuestion.label(class="form-label bg-dark")}}{{form.securityQuestion(class="form-control bg-dark text-warning", placeholder="Enter recovery question")}}<br>
+    </div>
+    <div class="form-group">
+    {{form.securityAnswer.label(class="form-label bg-dark")}}{{form.securityAnswer(class="form-control bg-dark text-warning", placeholder="Enter recovery answer")}}<br>
+    </div>
+    <div class="form-group">
+    {{form.password.label(class="form-label bg-dark")}}{{form.password(class="form-control bg-dark text-warning", placeholder="Enter Password")}}<br>
+    </div>
+    {{form.pass_confirm.label(class="form-label bg-dark")}}{{form.pass_confirm(class="form-control bg-dark text-warning", placeholder="Confirm Password")}}<br>
+    <div> 
+    {{form.submit(class="btn btn-danger")}}
+    </div>
+
+
+  </form>
+</div>
+{% endblock %}
