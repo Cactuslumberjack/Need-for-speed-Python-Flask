@@ -10,3 +10,16 @@ if __name__ == '__main__':
 This File will be outside the Carblog folder which contains all the code. 
 
 Make sure you create a virtual enviroment and manually download the dependencies found in the imports section. Keep the dependencies in your virtual environment 
+
+
+before deployment make sure to 
+
+set this in your terminal 
+$env:FLASK_APP = "Main.py"
+$env:FLASK_DEBUG = "1" 
+
+flask db init
+flask db migrate -m "initial migration" 
+flask db upgrade
+
+If you have issues running the local deployement try running python Main.py should start the development server:
