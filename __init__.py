@@ -8,7 +8,7 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'mysecret'
+app.config['SECRET_KEY'] = 'yoursecretkey'
 
 
 ##database set up##
@@ -44,3 +44,4 @@ app.register_blueprint(core)
 app.register_blueprint(users)
 app.register_blueprint(blog_posts)
 app.register_blueprint(error_pages)
+
